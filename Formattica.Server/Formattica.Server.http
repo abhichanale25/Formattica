@@ -1,0 +1,6 @@
+@Formattica.Server_HostAddress = http://localhost:5076
+
+GET {{Formattica.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
