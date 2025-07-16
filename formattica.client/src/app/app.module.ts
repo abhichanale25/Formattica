@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { JsonFormatterComponent } from './json-formatter/json-formatter.component';
+import { JsonFormatterComponent } from './admin/formatter/json-formatter/json-formatter.component';
 
 @NgModule({
   declarations: [
