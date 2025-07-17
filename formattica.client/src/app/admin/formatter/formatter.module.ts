@@ -3,15 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { FormatterRoutingModule } from './formatter-routing.module';
 import { JsonFormatterComponent } from './json-formatter/json-formatter.component';
+import { FormatterToolComponent } from './formatter-tool/formatter-tool.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    JsonFormatterComponent
+    JsonFormatterComponent,
+    FormatterToolComponent,
+    FormatterToolComponent
   ],
   imports: [
     CommonModule,
-    FormatterRoutingModule
+    FormatterRoutingModule,
+    FormsModule
   ]
 })
 export class FormatterModule { }

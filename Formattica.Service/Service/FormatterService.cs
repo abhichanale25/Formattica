@@ -17,15 +17,15 @@ namespace Formattica.Service.Service
 
             string formatted = formatType switch
             {
-                "JSON" => FormatJson(original),
-                "XML" => FormatXml(original),
-                "SQL" => FormatSql(original),
+                "JSON" => FormatJson(original!),
+                "XML" => FormatXml(original!),
+                "SQL" => FormatSql(original!),
                 _ => "Unsupported format type. Use JSON, XML, or SQL."
             };
 
             return new FormatResult
             {
-                Original = original,
+                Original = original!,
                 Formatted = formatted
             };
         }

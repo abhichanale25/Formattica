@@ -2,8 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AdminModule } from './admin/admin.module';
+import { JsonFormatterComponent } from './admin/formatter/json-formatter/json-formatter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,10 +11,7 @@ import { AdminModule } from './admin/admin.module';
     
   ],
   imports: [
-    BrowserModule, 
-    HttpClientModule,
-    AppRoutingModule,
-    AdminModule
+    BrowserModule, HttpClientModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
