@@ -1,0 +1,41 @@
+.compressor-buttons {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9f2f4;
+    border-bottom: 2px solid #7b1e3a;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .compressor-buttons button {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background-color: #7b1e3a; /* Burgundy base */
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .compressor-buttons button:hover {
+    background-color: #a93255; /* Lighter burgundy */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .compressor-buttons button:focus {
+    outline: none;
+    border-color: #c2185b;
+    box-shadow: 0 0 0 3px rgba(194, 24, 91, 0.3);
+  }
+  
+  .compressor-buttons button.active {
+    background-color: #4a0e21;
+    border-color: #a93255;
+  }
+
+  
