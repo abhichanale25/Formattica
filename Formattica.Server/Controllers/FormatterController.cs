@@ -1,4 +1,5 @@
 ﻿using Formattica.Models;
+using Formattica.Models.Formatter;
 using Formattica.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,18 @@ namespace Formattica.Server.Controllers
             _formatterService = formatterService;
         }
 
-        [HttpPost("format-json")]
+        [HttpPost("format")]
+        public IActionResult FormatContent([FromBody] FormatInputModel model)
+        {
+            if(string.IsNullOrWhiteSpace(model?.Content))
+                return BadRequest("Content is required.");
+
+            var result = _formatterService.FormatContent(model);
+            return Ok(result);
+        }
+
+
+        /*[HttpPost("format-json")]
         public IActionResult FormatJson([FromBody] JsonInputModel model)
         {
             var result = _formatterService.FormatJson(model.JsonInput);
@@ -25,7 +37,7 @@ namespace Formattica.Server.Controllers
                 OriginalJson = result.OriginalJson,
                 FormattedJson = result.FormattedJson
             });
-        }
+        }*/
 
 
     }
