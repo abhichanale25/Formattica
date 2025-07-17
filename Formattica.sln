@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "formattica.client", "formattica.client\formattica.client.esproj", "{0F89E026-3526-6303-49AD-56CD3672484A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Server", "Formattica.Server\Formattica.Server.csproj", "{C240D0B8-E619-482F-B6C8-8848ECC8A83B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Service", "Formattica.Service\Formattica.Service.csproj", "{35EEC3B8-D735-4328-A1E1-092328466545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Repository", "Formattica.Repository\Formattica.Repository.csproj", "{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Models", "Formattica.Models\Formattica.Models.csproj", "{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Framwork", "Formattica.Framwork\Formattica.Framwork.csproj", "{585121F1-B0DD-4291-AF90-928E2794899B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +31,22 @@ Global
 		{C240D0B8-E619-482F-B6C8-8848ECC8A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C240D0B8-E619-482F-B6C8-8848ECC8A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C240D0B8-E619-482F-B6C8-8848ECC8A83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35EEC3B8-D735-4328-A1E1-092328466545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EEC3B8-D735-4328-A1E1-092328466545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35EEC3B8-D735-4328-A1E1-092328466545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35EEC3B8-D735-4328-A1E1-092328466545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585121F1-B0DD-4291-AF90-928E2794899B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585121F1-B0DD-4291-AF90-928E2794899B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585121F1-B0DD-4291-AF90-928E2794899B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585121F1-B0DD-4291-AF90-928E2794899B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
