@@ -1,7 +1,11 @@
-﻿namespace Formattica.Service.IService
+﻿using Formattica.Models.Formatter;
+
+namespace Formattica.Service.IService
 {
     public interface IFormatterService
     {
-        (string OriginalJson, string FormattedJson) FormatJson(string? jsonInput);
+        FormatResult FormatContent(FormatInputModel model);
+
+        /*(string OriginalJson, string FormattedJson) FormatJson(string? jsonInput);*/
     }
 }
