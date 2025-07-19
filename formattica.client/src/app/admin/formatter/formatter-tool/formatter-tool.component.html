@@ -1,52 +1,50 @@
 <div class="formatter-wrapper">
-  <div class="formatter-card">
+  <div class="formatter-card glass-card">
     <div class="formatter-header">
-      <h3><i class="bi bi-braces-asterisk"></i> Formatter Tool</h3>
+      <h2><i class="bi bi-braces-asterisk me-2"></i> Smart Code Formatter</h2>
     </div>
 
-    <div class="form-group mb-3">
-      <label for="formatType">Select Format Type:</label>
-      <select class="form-select colorful-select" [(ngModel)]="formatType">
+    <div class="formatter-controls">
+      <label for="formatType">Choose Format Type:</label>
+      <select class="form-select format-dropdown" [(ngModel)]="formatType">
         <option value="JSON">JSON</option>
         <option value="XML">XML</option>
         <option value="SQL">SQL</option>
       </select>
     </div>
 
-    <!-- Split layout starts -->
-    <div class="split-layout">
-      <!-- Left - Raw Input -->
-      <div class="split-box">
-        <label>Enter Code:</label>
+    <div class="formatter-content">
+      <!-- Left Side -->
+      <div class="formatter-box">
+        <label>Input Code</label>
         <textarea
-          class="form-control colorful-textarea"
-          rows="20"
+          class="formatter-textarea"
+          rows="15"
           [(ngModel)]="rawInput"
-          placeholder="Paste your code here..."
-        >
-        </textarea>
+          placeholder="Paste your raw code here..."
+        ></textarea>
       </div>
 
-<!-- Right - Formatted Output -->
-<div class="split-box">
-  <div class="d-flex justify-content-between align-items-center mb-2">
-    <label class="mb-0">Formatted Output:</label>
-    <div>
-      <button class="btn btn-sm btn-outline-primary copy-btn" (click)="copyFormattedOutput()">Copy</button>
-      <span *ngIf="copied" class="copied-text ms-2">Copied!</span>
-    </div>
-  </div>
-
-  <pre class="output-box" *ngIf="formattedOutput"><code>{{ formattedOutput }}</code></pre>
-</div>
-
-
-
-    <div class="text-center mt-3">
-      <button class="btn btn-gradient" (click)="formatContent()">Format</button>
+      <!-- Right Side -->
+      <div class="formatter-box">
+        <div class="output-header">
+          <div class="label-wrapper">
+            <label>Formatted Output</label>
+          </div>
+          <button class="copy-btn" (click)="copyFormattedOutput()">Copy</button>
+        </div>
+        
+        <pre class="output-display" *ngIf="formattedOutput"><code>{{ formattedOutput }}</code></pre>
+        <span *ngIf="copied" class="copied-info">Copied!</span>
+      </div>
     </div>
 
-    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    <div class="formatter-actions">
+      <button class="btn-format" (click)="formatContent()">Format</button>
+    </div>
+    
+
+    <div *ngIf="errorMessage" class="formatter-error">
       {{ errorMessage }}
     </div>
   </div>

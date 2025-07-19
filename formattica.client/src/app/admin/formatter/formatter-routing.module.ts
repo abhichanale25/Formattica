@@ -5,7 +5,7 @@ import { FormatterToolComponent } from './formatter-tool/formatter-tool.componen
 
 const routes: Routes = [
   {path:"json", component:JsonFormatterComponent},
-  {path:"formatter", component:FormatterToolComponent}
+  {path:"formattertool", component:FormatterToolComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormatterService } from '../../services/formatter.service';
 
 @Component({
   selector: 'app-formatter-tool',
@@ -11,8 +12,11 @@ export class FormatterToolComponent {
   rawInput: string = '';
   formattedOutput: string = '';
   errorMessage: string = '';
+  copied: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private formatterService:FormatterService
+  ) {}
 
   ngOnInit(): void {
     
@@ -21,27 +25,28 @@ export class FormatterToolComponent {
   formatContent() {
     this.formattedOutput = '';
     this.errorMessage = '';
-
+  
     const payload = {
       content: this.rawInput,
       formatType: this.formatType,
     };
-
-    this.http
-      .post<any>('https://localhost:7108/api/Formatter/format', payload)
-      .subscribe({
-        next: (response) => {
-          this.formattedOutput = response.formatted;
-        },
-        error: (err) => {
-          this.errorMessage =
-            err?.error?.message || 'An error occurred while formatting.';
-        },
-      });
+  
+    this.formatterService.formatContent(payload).subscribe({
+      next: (res: any) => {
+        try {
+          const parsed = JSON.parse(res.formatted);
+          this.formattedOutput = JSON.stringify(parsed, null, 2); 
+        } catch (e) {
+          this.formattedOutput = res.formatted; 
+        }
+      },
+      error: (err: any) => {
+        this.errorMessage =
+          err?.error?.message || 'An error occurred while formatting.';
+      }
+    });
   }
-
-copied: boolean = false;
-
+  
 copyFormattedOutput() {
   if (this.formattedOutput) {
     navigator.clipboard.writeText(this.formattedOutput).then(() => {
