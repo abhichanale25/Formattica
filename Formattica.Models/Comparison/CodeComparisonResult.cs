@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Formattica.Models.Comparison
 {
-    public class CodeComparisonResult
+    public class CodeComparisonResult1
     {
         public List<CodeDiffLine> Differences { get; set; } = new();
     }

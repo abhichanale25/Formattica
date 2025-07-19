@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     JsonFormatterComponent,
     FormatterToolComponent,
-    FormatterToolComponent
   ],
   imports: [
     CommonModule,
