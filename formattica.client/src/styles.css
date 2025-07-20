@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  padding-top: 90px; /* navbar height + some buffer */
+  background-color: rgba(13, 110, 253, 0.25);
+  color: #000;
+}
+
+footer {
+  font-size: smaller;
+  padding-top: 80px;
+  text-align: center;
+  color: #6c757d;
+}
+
+/* Prevent scroll on entire page */
+body, html {
+  overflow: hidden;
+  height: 100%;
+}

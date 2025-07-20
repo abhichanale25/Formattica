@@ -10,8 +10,9 @@ const routes: Routes = [
         loadChildren: () =>
             import("src/app/admin/admin.module").then((m) => m.AdminModule)
     },
-    { path: '', redirectTo:"admin", pathMatch:"full"},
-    // { path: "*", redirectTo:"admin", pathMatch:"full"}
+    { path: '', redirectTo: 'home', pathMatch: 'full' },   // ✅ Landing page is /home
+
+  { path: '**', redirectTo: 'home' }                      // ✅ Wildcard route fallback
     
 ]
 

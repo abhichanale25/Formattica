@@ -1,17 +1,31 @@
 <nav class="menu-bar">
   <ul>
-    <li class="logo">
-      <i class="fas fa-toolbox"></i>
-      <span class="project-name">Formattica</span>
-    </li>
-    <li class="home-icon">
-      <a routerLink="/admin/home" title="Home">
-        <i class="fas fa-home"></i>
+    <li class="container">
+      <a class="navbar-brand position-relative" class="logo-link">
+        <img src="assets/ODK.png" alt="Logo" class="logo-img" />
       </a>
     </li>
-    <li><a routerLink="/admin/compressor">Compressor</a></li>
-    <li><a routerLink="/admin/conversion">Conversion</a></li>
-    <li><a routerLink="/admin/comparison/codeComparision">Comparison</a></li>
-    <li><a routerLink="/admin/formatter/formattertool">Formatter</a></li>
+    <li class="nav-item">
+      <a routerLink="/admin/home" title="Home">
+        <i class="fas fa-home" style="font-size: 20px;"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/compressor">Compressor</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/conversion">Conversion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/comparison/codeComparision"
+        >Comparison</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/formatter/formattertool"
+        >Formatter</a
+      >
+    </li>
   </ul>
 </nav>

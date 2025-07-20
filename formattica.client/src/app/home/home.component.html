@@ -1,19 +1,96 @@
-<div class="card-grid">
-    <div class="card" routerLink="/admin/compressor">
-      <h3>Compressor</h3>
-      <p>Compress your documents</p>
-    </div>
-    <div class="card" routerLink="/admin/conversion">
-      <h3>Conversion</h3>
-      <p>Convert between formats</p>
-    </div>
-    <div class="card" routerLink="/admin/comparison/codeComparision">
-      <h3>Comparison</h3>
-      <p>Compare code files</p>
-    </div>
-    <div class="card" routerLink="/admin/formatter/formattertool">
-      <h3>Formatter</h3>
-      <p>Format your JSON or XML</p>
+<!-- <nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand position-relative" href="#">
+      <img src="assets/ODK2.png" alt="Logo" class="logo-img">
+    </a>
+    <div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Compressor</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Comparison</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Formatter</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Conversion</a></li>
+      </ul>
     </div>
   </div>
+</nav> -->
+<!-- Hero Section -->
+<section class="hero-section text-center">
+  <div class="container bottom">
+    <h1 class="display-4 fw-bold" style="padding-top: 73px;">Own Dev Kit</h1>
+    <p class="lead text-muted">
+      Compress. Compare. Format. Convert.<br />Everything a developer needs in
+      one place.
+    </p>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center shadow-sm feature-card">
+          <div class="card-body"  routerLink="/admin/compressor">
+            <div class="feature-icon text-primary mb-3">
+              <i class="bi bi-arrow-down-circle display-6"></i>
+            </div>
+            <h5 class="card-title">Compressor</h5>
+            <p class="card-text text-muted">
+              Compress HTML, CSS, JS, or JSON files instantly and efficiently.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center shadow-sm feature-card">
+          <div class="card-body" routerLink="/admin/comparison/codeComparision">
+            <div class="feature-icon text-primary mb-3">
+              <i class="bi bi-columns-gap display-6"></i>
+            </div>
+            <h5 class="card-title">Comparison</h5>
+            <p class="card-text text-muted">
+              Compare two versions of code, files, or text side by side.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center shadow-sm feature-card">
+          <div class="card-body" routerLink="/admin/formatter/formattertool">
+            <div class="feature-icon text-primary mb-3">
+              <i class="bi bi-braces display-6"></i>
+            </div>
+            <h5 class="card-title">Formatter</h5>
+            <p class="card-text text-muted">
+              Beautify your code for better readability and consistency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center shadow-sm feature-card">
+          <div class="card-body" routerLink="/admin/conversion">
+            <div class="feature-icon text-primary mb-3">
+              <i class="bi bi-shuffle display-6"></i>
+            </div>
+            <h5 class="card-title">Conversion</h5>
+            <p class="card-text text-muted">
+              Easily convert formats like JSON to XML, CSV to JSON, and more.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container" style="height: 2px;">
+    <p class="footer-heading">© 2025 Own Dev Kit. All rights reserved.</p>
+  </div>
+</footer>
   
