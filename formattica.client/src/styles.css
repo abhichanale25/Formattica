@@ -12,7 +12,7 @@ footer {
 }
 
 /* Prevent scroll on entire page */
-body, html {
+/* body, html {
   overflow: hidden;
   height: 100%;
-}
+} */

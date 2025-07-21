@@ -8,7 +8,7 @@ import { FormatterService } from '../../services/formatter.service';
   styleUrls: ['./formatter-tool.component.css'],
 })
 export class FormatterToolComponent {
-  formatType: string = 'JSON';
+ formatType: string = 'JSON';
   rawInput: string = '';
   formattedOutput: string = '';
   errorMessage: string = '';
@@ -19,19 +19,19 @@ export class FormatterToolComponent {
   ) {}
 
   ngOnInit(): void {
-    
+
   }
 
   formatContent() {
     this.formattedOutput = '';
     this.errorMessage = '';
-  
-    const payload = {
-      content: this.rawInput,
-      formatType: this.formatType,
-    };
-  
-    this.formatterService.formatContent(payload).subscribe({
+
+    // const payload = {
+    //   content: this.rawInput,
+    //   formatType: this.formatType,
+    // };
+
+    this.formatterService.formatContent(this.rawInput,this.formatType).subscribe({
       next: (res: any) => {
         try {
           const parsed = JSON.parse(res.formatted);
@@ -46,7 +46,7 @@ export class FormatterToolComponent {
       }
     });
   }
-  
+
 copyFormattedOutput() {
   if (this.formattedOutput) {
     navigator.clipboard.writeText(this.formattedOutput).then(() => {
@@ -54,5 +54,11 @@ copyFormattedOutput() {
       setTimeout(() => this.copied = false, 2000); // hide after 2s
     });
   }
+}
+
+autoResize(event: Event): void {
+  const textarea = event.target as HTMLTextAreaElement;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
 }
 }
