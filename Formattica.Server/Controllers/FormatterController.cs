@@ -17,12 +17,12 @@ namespace Formattica.Server.Controllers
         }
 
         [HttpPost("format")]
-        public IActionResult FormatContent([FromBody] FormatInputModel model)
+        public IActionResult FormatContent(string? Content, string? FormatType)
         {
-            if(string.IsNullOrWhiteSpace(model?.Content))
+            if(string.IsNullOrWhiteSpace(Content))
                 return BadRequest("Content is required.");
 
-            var result = _formatterService.FormatContent(model);
+            var result = _formatterService.FormatContent(Content, FormatType);
             return Ok(result);
         }
 

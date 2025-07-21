@@ -1,51 +1,30 @@
-<div class="formatter-wrapper">
-  <div class="formatter-card glass-card">
-    <div class="formatter-header">
-      <h2><i class="bi bi-braces-asterisk me-2"></i> Smart Code Formatter</h2>
-    </div>
-
-    <div class="formatter-controls">
-      <label for="formatType">Choose Format Type:</label>
-      <select class="form-select format-dropdown" [(ngModel)]="formatType">
-        <option value="JSON">JSON</option>
-        <option value="XML">XML</option>
-        <option value="SQL">SQL</option>
-      </select>
-    </div>
-
-    <div class="formatter-content">
-      <!-- Left Side -->
-      <div class="formatter-box">
-        <label>Input Code</label>
-        <textarea
-          class="formatter-textarea"
-          rows="15"
-          [(ngModel)]="rawInput"
-          placeholder="Paste your raw code here..."
-        ></textarea>
-      </div>
-
-      <!-- Right Side -->
-      <div class="formatter-box">
-        <div class="output-header">
-          <div class="label-wrapper">
-            <label>Formatted Output</label>
-          </div>
-          <button class="copy-btn" (click)="copyFormattedOutput()">Copy</button>
-        </div>
-        
-        <pre class="output-display" *ngIf="formattedOutput"><code>{{ formattedOutput }}</code></pre>
-        <span *ngIf="copied" class="copied-info">Copied!</span>
-      </div>
-    </div>
-
-    <div class="formatter-actions">
-      <button class="btn-format" (click)="formatContent()">Format</button>
-    </div>
-    
-
-    <div *ngIf="errorMessage" class="formatter-error">
-      {{ errorMessage }}
-    </div>
+<div class="formatter-container">
+  <!-- Input -->
+  <div class="section">
+    <label for="inputCode">Input Code</label>
+    <textarea
+      id="inputCode"
+      [(ngModel)]="rawInput"
+      (input)="autoResize($event)"
+      placeholder="Paste your raw code here..."
+    ></textarea>
   </div>
+
+  <!-- Output -->
+  <div class="section">
+        <button class="btn btn-info copy"(click)="copyFormattedOutput()">{{ copied ? 'Copied' : 'Copy' }}</button>
+    <label for="outputCode">Output Code</label>
+
+    <textarea
+      id="outputCode"
+      [(ngModel)]="formattedOutput"
+      readonly
+      placeholder="Copy your formatted code here..."
+    ></textarea>
+  </div>
+</div>
+
+<!-- Format Button -->
+<div class="btn-wrapper">
+  <button class="format-btn" class="btn btn-success"(click)="formatContent()">Format</button>
 </div>

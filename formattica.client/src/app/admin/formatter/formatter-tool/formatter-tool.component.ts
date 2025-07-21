@@ -26,12 +26,12 @@ export class FormatterToolComponent {
     this.formattedOutput = '';
     this.errorMessage = '';
   
-    const payload = {
-      content: this.rawInput,
-      formatType: this.formatType,
-    };
+    // const payload = {
+    //   content: this.rawInput,
+    //   formatType: this.formatType,
+    // };
   
-    this.formatterService.formatContent(payload).subscribe({
+    this.formatterService.formatContent(this.rawInput,this.formatType).subscribe({
       next: (res: any) => {
         try {
           const parsed = JSON.parse(res.formatted);
@@ -55,4 +55,12 @@ copyFormattedOutput() {
     });
   }
 }
+
+autoResize(event: Event): void {
+  const textarea = event.target as HTMLTextAreaElement;
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+
 }
