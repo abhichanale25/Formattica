@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComparisionService } from '../../services/comparision.service';
+import { ComparisionService } from '../../services/comparison.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
