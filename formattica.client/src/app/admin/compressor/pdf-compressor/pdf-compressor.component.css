@@ -10,6 +10,9 @@ body {
   
   .container {
     text-align: center;
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 50%;
   }
   
   h1 {
@@ -34,7 +37,7 @@ body {
     padding: 8px;
     width: 100%;
     max-width: 300px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
   }
   
@@ -44,17 +47,18 @@ body {
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    margin-bottom: 10px;
   }
   
   button {
     width: 100%;
-    max-width: 200px;
+    max-width: 150px;
     padding: 12px;
     font-size: 1rem;
     font-weight: 500;
     border: 2px solid transparent;
     border-radius: 30px;
-    background-color: #4A0E21;
+    background-color: #2C3E50;
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;

@@ -1,57 +1,74 @@
 <form [formGroup]="compareForm" (ngSubmit)="compareCode()" class="input-form">
-    <h2>Code Comparison</h2>
-  
-    <div class="textareas">
-      <div>
-        <label for="oldCode">Old Code</label>
-        <textarea id="oldCode" formControlName="oldCode" rows="10" placeholder="Enter old code..." [disabled]="comparisonDone"></textarea>
-      </div>
-      <div>
-        <label for="newCode">New Code</label>
-        <textarea id="newCode" formControlName="newCode" rows="10" placeholder="Enter new code..." [disabled]="comparisonDone"></textarea>
-      </div>
-    </div>
-  
-    <div class="buttons">
-        <button type="submit" [disabled]="comparisonDone">Compare</button>
-        <button 
-  type="button" 
-  class="clear-btn" 
-  *ngIf="hasTextToClear"
-  (click)="clear()">
-  Clear
-</button>
+  <h2>Code Comparison</h2>
 
-      </div>
-  </form>
-  
-  <!-- DIFF OUTPUT -->
-  <div class="diff-container" *ngIf="oldCodeLines.length || newCodeLines.length">
-    <div class="code-header">
-      <span class="removals">Old Code</span>
-      <span class="additions">New Code</span>
+  <div class="textareas">
+    <div>
+      <label for="oldCode">Old Code</label>
+      <textarea
+        id="oldCode"
+        formControlName="oldCode"
+        rows="10"
+        placeholder="Enter old code..."
+        [disabled]="comparisonDone"
+      ></textarea>
     </div>
-  
-    <div class="code-columns">
-      <div class="code-block old">
-        <div *ngFor="let line of oldCodeLines" class="code-line">
-          <span *ngFor="let seg of line.segments"
-                [ngClass]="{
-                  'removed': seg.type === 'removed',
-                  'unchanged': seg.type === 'unchanged'
-                }">{{ seg.text }}</span>
-        </div>
+    <div>
+      <label for="newCode">New Code</label>
+      <textarea
+        id="newCode"
+        formControlName="newCode"
+        rows="10"
+        placeholder="Enter new code..."
+        [disabled]="comparisonDone"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button type="submit" [disabled]="comparisonDone">Compare</button>
+    <button
+      type="button"
+      class="clear-btn"
+      *ngIf="hasTextToClear"
+      (click)="clear()"
+    >
+      Clear
+    </button>
+  </div>
+</form>
+
+<!-- DIFF OUTPUT -->
+<div class="diff-container" *ngIf="oldCodeLines.length || newCodeLines.length">
+  <div class="code-header">
+    <span class="removals">Old Code</span>
+    <span class="additions">New Code</span>
+  </div>
+
+  <div class="code-columns">
+    <div class="code-block old">
+      <div *ngFor="let line of oldCodeLines" class="code-line">
+        <span
+          *ngFor="let seg of line.segments"
+          [ngClass]="{
+            removed: seg.type === 'removed',
+            unchanged: seg.type === 'unchanged'
+          }"
+          >{{ seg.text }}</span
+        >
       </div>
-  
-      <div class="code-block new">
-        <div *ngFor="let line of newCodeLines" class="code-line">
-          <span *ngFor="let seg of line.segments"
-                [ngClass]="{
-                  'added': seg.type === 'added',
-                  'unchanged': seg.type === 'unchanged'
-                }">{{ seg.text }}</span>
-        </div>
+    </div>
+
+    <div class="code-block new">
+      <div *ngFor="let line of newCodeLines" class="code-line">
+        <span
+          *ngFor="let seg of line.segments"
+          [ngClass]="{
+            added: seg.type === 'added',
+            unchanged: seg.type === 'unchanged'
+          }"
+          >{{ seg.text }}</span
+        >
       </div>
     </div>
   </div>
-  
+</div>

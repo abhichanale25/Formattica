@@ -1,30 +1,45 @@
-<div class="formatter-container">
-  <!-- Input -->
-  <div class="section">
-    <label for="inputCode">Input Code</label>
-    <textarea
-      id="inputCode"
-      [(ngModel)]="rawInput"
-      (input)="autoResize($event)"
-      placeholder="Paste your raw code here..."
-    ></textarea>
+<div class="formatter-wrapper">
+  <!-- Format type dropdown -->
+  <div class="formatter-controls">
+    <label for="formatType">Select Format Type:</label>
+    <select id="formatType" [(ngModel)]="formatType" class="format-dropdown">
+      <option value="JSON">JSON</option>
+      <option value="XML">XML</option>
+      <option value="SQL">SQL</option>
+    </select>
   </div>
 
-  <!-- Output -->
-  <div class="section">
-        <button class="btn btn-info copy"(click)="copyFormattedOutput()">{{ copied ? 'Copied' : 'Copy' }}</button>
-    <label for="outputCode">Output Code</label>
+  <!-- Input / Output sections -->
+  <div class="formatter-container">
+    <!-- Input -->
+    <div class="section">
+      <label for="inputCode">Input Code</label>
+      <textarea
+        id="inputCode"
+        [(ngModel)]="rawInput"
+        placeholder="Paste your raw code here..."
+      ></textarea>
+    </div>
 
-    <textarea
-      id="outputCode"
-      [(ngModel)]="formattedOutput"
-      readonly
-      placeholder="Copy your formatted code here..."
-    ></textarea>
+    <!-- Output -->
+    <div class="section">
+      <div class="output-header">
+        <label for="outputCode">Output Code</label>
+        <button class="copy" (click)="copyFormattedOutput()">
+          {{ copied ? 'Copied' : 'Copy' }}
+        </button>
+      </div>
+      <textarea
+        id="outputCode"
+        [(ngModel)]="formattedOutput"
+        readonly
+        placeholder="Copy your formatted code here..."
+      ></textarea>
+    </div>
   </div>
-</div>
 
-<!-- Format Button -->
-<div class="btn-wrapper">
-  <button class="format-btn" class="btn btn-success"(click)="formatContent()">Format</button>
+  <!-- Format Button -->
+  <div class="btn-wrapper">
+    <button class="format-btn" (click)="formatContent()">Format</button>
+  </div>
 </div>
