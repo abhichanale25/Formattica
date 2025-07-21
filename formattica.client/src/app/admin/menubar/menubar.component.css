@@ -94,3 +94,8 @@
   color: white !important;
 }
 
+.menu-bar a.active {
+  background-color: #ffffff53;
+  border-radius: 6px;
+  font-weight: 600;
+}
