@@ -19,8 +19,8 @@ namespace Formattica.Models.Comparison
 
     public class Segment
     {
-        public string Text { get; set; }
-        public string Type { get; set; } // "added", "removed", "unchanged"
+        public string? Text { get; set; }
+        public string? Type { get; set; } // "added", "removed", "unchanged"
     }
 
 

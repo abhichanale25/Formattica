@@ -10,10 +10,10 @@ namespace Formattica.Service.Service
     public class FormatterService:IFormatterService
     {
 
-        public FormatResult FormatContent(FormatInputModel model)
+        public FormatResult FormatContent(string? Content, string? FormatType)
         {
-            var original = model.Content;
-            var formatType = model.FormatType?.ToUpper();
+            var original = Content;
+            var formatType = FormatType?.ToUpper();
 
             string formatted = formatType switch
             {
