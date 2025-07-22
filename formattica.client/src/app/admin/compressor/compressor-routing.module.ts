@@ -8,7 +8,7 @@ const routes: Routes = [
 
   // { path:'', component:CpmpressorContainerComponent },
   // { path:"img-zip", component:ImgZipCompressorComponent },
-  // { path:"pdf", component:PdfCompressorComponent }
+  { path:"pdf", component:PdfCompressorComponent },
 
   {
     path: '',

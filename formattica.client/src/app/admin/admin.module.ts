@@ -9,7 +9,7 @@ import { AdminRoutingModule } from './admin-routing.module';
   declarations: [ MenubarComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
   ],
   exports:[MenubarComponent]
 })

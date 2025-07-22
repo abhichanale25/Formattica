@@ -9,6 +9,17 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ICompressionService, CompressionService>();
 builder.Services.AddScoped<IConversionService, ConversionService>();
 builder.Services.AddScoped<IFormatterService, FormatterService>();
+builder.Services.AddScoped<IComparisonService, ComparisonService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -18,6 +29,9 @@ var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
+// Enable CORS
+app.UseCors("AllowAngularApp");
 
 if (app.Environment.IsDevelopment())
 {

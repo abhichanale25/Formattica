@@ -1,8 +1,6 @@
 .menu-bar {
-  background-color: black;
+  background-color: #2c3e50;
   padding: 12px 24px;
-  margin-top: -120px;
-  height: 90px;
 }
 
 .menu-bar ul {
@@ -25,7 +23,6 @@
 }
 .menu-bar .logo i {
   color: white;
-  pointer-events: none;
 }
 
 .project-name {
@@ -47,7 +44,6 @@
   transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
-  margin-top: -60px;
 }
 
 .menu-bar a:hover {
@@ -62,40 +58,26 @@
   font-size: 1.2rem;
 }
 
-.logo-img {
-  width: 200px;
-  height: auto;
-  margin-right: 10px;
-  filter: brightness(0) invert(1);
-  cursor: pointer;
-  margin-left: -60px;
-}
 
-.logo-img1{
-  width: 130px;
-  height: auto;
-  margin-right: 10px;
-  margin-top: -20px;
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-.menu-bar a.logo-link:hover {
-  background-color: transparent;
-  cursor: default;
-  pointer-events: none;
-}
-
-.logo {
-  color: white !important;
-}
-
-.logo .project-name {
-  color: white !important;
-}
-
-.menu-bar a.active {
-  background-color: #ffffff53;
-  border-radius: 6px;
-  font-weight: 600;
-}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .card {
+    background: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-align: center;
+  } 
+  
+  .card:hover {
+    background: #e0f7fa;
+    transform: scale(1.02);
+  }
+  

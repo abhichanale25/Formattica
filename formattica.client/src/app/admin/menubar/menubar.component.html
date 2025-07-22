@@ -1,9 +1,29 @@
 <nav class="menu-bar">
-    <ul>
-        <li><a routerLink="/admin/compressor">Compressor</a></li>
-      <li><a routerLink="/admin/conversion">Conversion</a></li>
-      <li><a routerLink="/admin/comparison">Comparison</a></li>
-      <li><a routerLink="/admin/formatter/json">Formatter</a></li>
-    </ul>
-  </nav>
-  
+  <ul>
+    <li class="container">
+      <a class="navbar-brand position-relative logo-link">
+        <img src="assets/logo2.png" alt="Logo" class="logo-img1" />
+        <img src="assets/ODK.png" alt="Logo" class="logo-img" />
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a routerLink="/admin/home" routerLinkActive="active" title="Home">
+        <i class="fas fa-home" style="font-size: 20px"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/compressor/pdf" routerLinkActive="active">Compressor</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/conversion" routerLinkActive="active">Conversion</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/comparison/codeComparision" routerLinkActive="active">Comparison</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin/formatter/formattertool" routerLinkActive="active">Formatter</a>
+    </li>
+  </ul>
+</nav>

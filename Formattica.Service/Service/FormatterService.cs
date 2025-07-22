@@ -10,22 +10,22 @@ namespace Formattica.Service.Service
     public class FormatterService:IFormatterService
     {
 
-        public FormatResult FormatContent(FormatInputModel model)
+        public FormatResult FormatContent(string? Content, string? FormatType)
         {
-            var original = model.Content;
-            var formatType = model.FormatType?.ToUpper();
+            var original = Content;
+            var formatType = FormatType?.ToUpper();
 
             string formatted = formatType switch
             {
-                "JSON" => FormatJson(original),
-                "XML" => FormatXml(original),
-                "SQL" => FormatSql(original),
+                "JSON" => FormatJson(original!),
+                "XML" => FormatXml(original!),
+                "SQL" => FormatSql(original!),
                 _ => "Unsupported format type. Use JSON, XML, or SQL."
             };
 
             return new FormatResult
             {
-                Original = original,
+                Original = original!,
                 Formatted = formatted
             };
         }

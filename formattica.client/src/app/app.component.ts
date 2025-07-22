@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface WeatherForecast {
   date: string;
@@ -16,22 +17,14 @@ interface WeatherForecast {
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.getForecasts();
+  constructor(private router: Router) {
+    const currentUrl = this.router.url;
+    if (currentUrl !== '/home') {
+      this.router.navigate(['/home']);
+    }
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  ngOnInit(): void {
+    
   }
-
-  title = 'formattica.client';
 }
