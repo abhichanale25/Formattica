@@ -10,8 +10,8 @@ export class CompressorService {
 
   constructor(private http:HttpClient) { }
 
-  formatPDF(formData: FormData): Observable<any> {
-    return this.http.post(environment.apiBaseUrl + "Compression/compress-pdf", formData, {
+  formatDoc(formData: FormData): Observable<any> {
+    return this.http.post(environment.apiBaseUrl + "Compression/compress", formData, {
       responseType: 'blob'
     });
   }

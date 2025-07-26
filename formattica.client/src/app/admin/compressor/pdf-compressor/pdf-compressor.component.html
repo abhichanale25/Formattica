@@ -2,13 +2,14 @@
     <h1>File Compressor</h1>
   
     <div class="file-input-group">
-      <label for="pdfFile">Select a file</label>
-      <input type="file" id="pdfFile" accept="application/pdf" (change)="onFileSelected($event)">
+      <label for="file">Select a file</label>
+      <input type="file" id="file"  accept=".pdf, .zip, .doc, .docx, image/*" 
+       (change)="onFileSelected($event)">
     </div>
   
     <div class="button-group">
       <button (click)="compressDocument()">Compress File</button>
-      <button class="download-btn" *ngIf="compressedBlob" (click)="downloadCompressedPDF()">Download File</button>
+      <button class="download-btn" *ngIf="compressedBlob" (click)="downloadCompressedDoc()">Download File</button>
     </div>
   </div>
   

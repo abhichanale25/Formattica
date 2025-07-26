@@ -1,0 +1,30 @@
+<form [formGroup]="conversionForm" (ngSubmit)="fileConversion()" class="container">
+  <div class="formatter-controls">
+    <label for="targetFormat">Select File Type</label>
+    <select id="targetFormat" class="format-dropdown" formControlName="targetFormat">
+      <option value="png">PNG</option>
+      <option value="jpg">JPG/JPEG</option>
+      <option value="gif">GIF</option>
+      <option value="bmp">BMP</option>
+      <option value="tiff">TIFF</option>
+      <option value="webp">WebP</option>
+    </select>
+  </div>
+
+  <h1>File Conversion</h1>
+
+  <div class="file-input-group">
+    <label for="file">Select a file</label>
+    <input
+      type="file"
+      id="file"
+      accept=".pdf, .zip, .doc, .docx, image/*"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+
+  <div class="button-group">
+    <button type="submit">Compress File</button>
+    <button class="download-btn" *ngIf="convertedFile" (click)="downloadConvertedFile()">Download File</button>
+  </div>
+</form>
