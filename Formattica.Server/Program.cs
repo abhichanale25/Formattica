@@ -1,5 +1,6 @@
 using Formattica.Service.IService;
 using Formattica.Service.Service;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,12 @@ builder.Services.AddScoped<ICompressionService, CompressionService>();
 builder.Services.AddScoped<IConversionService, ConversionService>();
 builder.Services.AddScoped<IFormatterService, FormatterService>();
 builder.Services.AddScoped<IComparisonService, ComparisonService>();
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 15 * 1024 * 1024; // 15 MB
+});
+
 
 builder.Services.AddCors(options =>
 {

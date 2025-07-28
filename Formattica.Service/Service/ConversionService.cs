@@ -8,7 +8,6 @@ using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Formats.Tiff;
 using SixLabors.ImageSharp.Formats.Webp;
-using SQL.Formatter.Core;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -36,7 +35,7 @@ namespace Formattica.Service.Service
             {
                 case "jpeg":
                 case "jpg":
-                    await image.SaveAsJpegAsync(output, new JpegEncoder { Quality = 85 });
+                    await image.SaveAsJpegAsync(output, new JpegEncoder { Quality = 100 });
                     contentType = "image/jpeg";
                     fileExtension = "jpg";
                     break;
@@ -77,6 +76,8 @@ namespace Formattica.Service.Service
 
             return (output.ToArray(), contentType, fileExtension);
         }
+
+
         public Task<string> GenerateClass(string databaseType, string language, string className, string definition)
         {
             var fields = databaseType.ToLower() switch
