@@ -17,6 +17,12 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartBodyLengthLimit = 15 * 1024 * 1024; // 15 MB
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 10_000_000; // 10 MB
+});
+
+
 
 builder.Services.AddCors(options =>
 {

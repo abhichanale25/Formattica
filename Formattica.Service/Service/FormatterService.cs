@@ -34,17 +34,15 @@ namespace Formattica.Service.Service
         {
             try
             {
-                var jsonElement = JsonSerializer.Deserialize<JsonElement>(content);
-                return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions
-                {
-                    WriteIndented = true
-                });
+                var parsed = Newtonsoft.Json.Linq.JToken.Parse(content);
+                return parsed.ToString(Newtonsoft.Json.Formatting.Indented);
             }
             catch(Exception ex)
             {
                 return $"Invalid JSON: {ex.Message}";
             }
         }
+
 
         private string FormatXml(string content)
         {

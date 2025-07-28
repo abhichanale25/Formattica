@@ -26,18 +26,18 @@ export class FormatterToolComponent {
     this.formattedOutput = '';
     this.errorMessage = '';
 
-    // const payload = {
-    //   content: this.rawInput,
-    //   formatType: this.formatType,
-    // };
+    const payload = {
+      content: this.rawInput,
+      formatType: this.formatType,
+    };
 
-    this.formatterService.formatContent(this.rawInput,this.formatType).subscribe({
+    this.formatterService.formatContent(payload).subscribe({
       next: (res: any) => {
         try {
-          const parsed = JSON.parse(res.formatted);
+          const parsed = JSON.parse(res.preview);
           this.formattedOutput = JSON.stringify(parsed, null, 2); 
         } catch (e) {
-          this.formattedOutput = res.formatted; 
+          this.formattedOutput = res.preview; 
         }
       },
       error: (err: any) => {
