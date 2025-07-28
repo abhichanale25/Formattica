@@ -5,7 +5,8 @@ namespace Formattica.Service.IService
 {
     public interface ICompressionService
     {
-        Task<(byte[] CompressedBytes, string ContentType, string FileName)> CompressFile(IFormFile file);
-        Task<byte[]> CompressPdf(IFormFile file);
+        Task<(byte[] CompressedBytes, string ContentType, string FileName)> CompressFile(IFormFile file, string qualityKey);
+        //Task<(byte[] CompressedBytes, string ContentType, string FileName)> CompressFile(IFormFile file, string quality);
+        Task<byte[]> CompressPdf(IFormFile file, string quality);
     }
 }

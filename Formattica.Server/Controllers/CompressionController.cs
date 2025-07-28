@@ -14,7 +14,7 @@ namespace Formattica.Server.Controllers
         }
 
         [HttpPost("compress")]
-        public async Task<IActionResult> Compress(IFormFile file)
+        public async Task<IActionResult> Compress(IFormFile file, string quality)
         {
             if(file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
@@ -25,7 +25,7 @@ namespace Formattica.Server.Controllers
             {
                 if(ext == ".pdf")
                 {
-                    var pdfBytes = await _compressionService.CompressPdf(file);
+                    var pdfBytes = await _compressionService.CompressPdf(file, quality);
                     if(pdfBytes == null || pdfBytes.Length == 0)
                         return BadRequest("Invalid or unsupported PDF file.");
 
@@ -33,7 +33,7 @@ namespace Formattica.Server.Controllers
                 }
                 else
                 {
-                    var result = await _compressionService.CompressFile(file);
+                    var result = await _compressionService.CompressFile(file, quality);
                     return File(result.CompressedBytes, result.ContentType, result.FileName);
                 }
             }
