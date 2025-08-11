@@ -11,11 +11,17 @@ export class FormatterService {
     private http: HttpClient
   ) { }
 
-  formatContent(content: string, formatType: string) {
-  const params = new HttpParams()
-    .set('content', content)
-    .set('formatType', formatType);
+//   formatContent(content: string, formatType: string) {
+//   const params = new HttpParams()
+//     .set('content', content)
+//     .set('formatType', formatType);
 
-  return this.http.post(environment.apiBaseUrl + "Formatter/format", null, { params });
-}
+//   return this.http.post(environment.apiBaseUrl + "Formatter/format", null, { params });
+// }
+
+formatContent(payload: { content: string; formatType: string }) {
+    return this.http.post(`${environment.apiBaseUrl}Formatter/format`, payload);
+  }
+
+
 }

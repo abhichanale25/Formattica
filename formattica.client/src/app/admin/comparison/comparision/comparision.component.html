@@ -1,23 +1,80 @@
 <form [formGroup]="compareForm" (ngSubmit)="compareCode()" class="input-form">
-  <h2>Code Comparison</h2>
+  <!-- <div class="form-header">
+    <label for="formatType">Select Comparison Type:</label>
+    <select id="formatType" formControlName="comparisonType">
+      <option value="code">Code</option>
+      <option value="text">Text</option>
+    </select>
+  </div> -->
+  <!-- Diff Output -->
+  <div class="code-header">
+    <span class="removals">Original text</span>
+    <span class="additions">Changed text</span>
+  </div>
+  <div
+    class="diff-container"
+    *ngIf="oldCodeLines.length || newCodeLines.length"
+  >
+    <div class="diff-body">
+      <div class="diff-row" *ngFor="let idx of getMaxLines()">
+        <div class="code-cell">
+          <ng-container
+            *ngIf="oldCodeLines[idx]?.segments.length; else emptyOld"
+          >
+            <span
+              *ngFor="let seg of oldCodeLines[idx].segments"
+              [ngClass]="{
+                removed: seg.type === 'removed',
+                unchanged: seg.type === 'unchanged'
+              }"
+              [innerHTML]="formatText(seg.text)"
+            >
+            </span>
+          </ng-container>
+          <ng-template #emptyOld
+            ><span class="empty-line">&nbsp;</span></ng-template
+          >
+        </div>
+
+        <div class="code-cell">
+          <ng-container
+            *ngIf="newCodeLines[idx]?.segments.length; else emptyNew"
+          >
+            <span
+              *ngFor="let seg of newCodeLines[idx].segments"
+              [ngClass]="{
+                removed: seg.type === 'removed',
+                unchanged: seg.type === 'unchanged',
+                added: seg.type === 'added'
+              }"
+              [innerHTML]="formatText(seg.text)"
+            >
+            </span>
+          </ng-container>
+          <ng-template #emptyNew
+            ><span class="empty-line">&nbsp;</span></ng-template
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="textareas">
-    <div>
-      <label for="oldCode">Old Code</label>
+    <div class="textarea-block">
+      <label for="oldCode">Original text</label>
       <textarea
         id="oldCode"
         formControlName="oldCode"
-        rows="10"
         placeholder="Enter old code..."
         [disabled]="comparisonDone"
       ></textarea>
     </div>
-    <div>
-      <label for="newCode">New Code</label>
+
+    <div class="textarea-block">
+      <label for="newCode">Changed text</label>
       <textarea
         id="newCode"
         formControlName="newCode"
-        rows="10"
         placeholder="Enter new code..."
         [disabled]="comparisonDone"
       ></textarea>
@@ -25,7 +82,7 @@
   </div>
 
   <div class="buttons">
-    <button type="submit" [disabled]="comparisonDone">Compare</button>
+    <button type="submit">Compare</button>
     <button
       type="button"
       class="clear-btn"
@@ -36,39 +93,3 @@
     </button>
   </div>
 </form>
-
-<!-- DIFF OUTPUT -->
-<div class="diff-container" *ngIf="oldCodeLines.length || newCodeLines.length">
-  <div class="code-header">
-    <span class="removals">Old Code</span>
-    <span class="additions">New Code</span>
-  </div>
-
-  <div class="code-columns">
-    <div class="code-block old">
-      <div *ngFor="let line of oldCodeLines" class="code-line">
-        <span
-          *ngFor="let seg of line.segments"
-          [ngClass]="{
-            removed: seg.type === 'removed',
-            unchanged: seg.type === 'unchanged'
-          }"
-          >{{ seg.text }}</span
-        >
-      </div>
-    </div>
-
-    <div class="code-block new">
-      <div *ngFor="let line of newCodeLines" class="code-line">
-        <span
-          *ngFor="let seg of line.segments"
-          [ngClass]="{
-            added: seg.type === 'added',
-            unchanged: seg.type === 'unchanged'
-          }"
-          >{{ seg.text }}</span
-        >
-      </div>
-    </div>
-  </div>
-</div>

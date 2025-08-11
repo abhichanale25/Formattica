@@ -35,7 +35,7 @@ export class PdfCompressorComponent {
     const formData = new FormData();
     formData.append('file', this.selectedFile);
   
-    this.compressorService.formatPDF(formData).subscribe({
+    this.compressorService.formatDoc(formData).subscribe({
       next: (blob: Blob) => {
         this.compressedBlob = blob;  // ✅ Store for download
       },
@@ -46,7 +46,7 @@ export class PdfCompressorComponent {
     });
   }
   
-  downloadCompressedPDF(): void {
+  downloadCompressedDoc(): void {
     if (!this.compressedBlob || !this.selectedFile) return;
   
     const blobUrl = URL.createObjectURL(this.compressedBlob);
