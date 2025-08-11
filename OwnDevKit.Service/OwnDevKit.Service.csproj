@@ -11,11 +11,11 @@
     <PackageReference Include="Hogimn.Sql.Formatter" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.10" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Formattica.Models\Formattica.Models.csproj" />
+    <ProjectReference Include="..\OwnDevKit.Models\OwnDevKit.Models.csproj" />
   </ItemGroup>
 
 </Project>

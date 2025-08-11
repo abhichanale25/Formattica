@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "formattica.client", "formattica.client\formattica.client.esproj", "{0F89E026-3526-6303-49AD-56CD3672484A}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "OwnDevKit.Client", "OwnDevKit.Client\OwnDevKit.Client.esproj", "{0F89E026-3526-6303-49AD-56CD3672484A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Server", "Formattica.Server\Formattica.Server.csproj", "{C240D0B8-E619-482F-B6C8-8848ECC8A83B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnDevKit.Server", "OwnDevKit.Server\OwnDevKit.Server.csproj", "{C240D0B8-E619-482F-B6C8-8848ECC8A83B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Service", "Formattica.Service\Formattica.Service.csproj", "{35EEC3B8-D735-4328-A1E1-092328466545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnDevKit.Service", "OwnDevKit.Service\OwnDevKit.Service.csproj", "{35EEC3B8-D735-4328-A1E1-092328466545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Repository", "Formattica.Repository\Formattica.Repository.csproj", "{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnDevKit.Repository", "OwnDevKit.Repository\OwnDevKit.Repository.csproj", "{B09BCBAF-E01A-40D5-A2F8-25B21EC43D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Models", "Formattica.Models\Formattica.Models.csproj", "{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnDevKit.Models", "OwnDevKit.Models\OwnDevKit.Models.csproj", "{AA02C4F7-6FD5-48E7-A059-2026DCC69C95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formattica.Framwork", "Formattica.Framwork\Formattica.Framwork.csproj", "{585121F1-B0DD-4291-AF90-928E2794899B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnDevKit.Framwork", "OwnDevKit.Framwork\OwnDevKit.Framwork.csproj", "{585121F1-B0DD-4291-AF90-928E2794899B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
