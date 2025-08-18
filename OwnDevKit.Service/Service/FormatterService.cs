@@ -1,25 +1,22 @@
 ﻿using Formattica.Models.Formatter;
 using Formattica.Service.IService;
-using SQL.Formatter;
-using SQL.Formatter.Language;
-using System.Text.Json;
-using System.Xml.Linq;
+using OwnDevKit.Framwork.FormatterHelper;
 
 namespace Formattica.Service.Service
 {
     public class FormatterService:IFormatterService
     {
 
-        public FormatResult FormatContent(string? Content, string? FormatType)
+        public FormatResult FormatContent(FormatInputModel formatInputModel)
         {
-            var original = Content;
-            var formatType = FormatType?.ToUpper();
+            var original = formatInputModel.Content;
+            var formatType = formatInputModel.FormatType?.ToUpper();
 
             string formatted = formatType switch
             {
-                "JSON" => FormatJson(original!),
-                "XML" => FormatXml(original!),
-                "SQL" => FormatSql(original!),
+                "JSON" => FormatterHelper.FormatJson(original!),
+                "XML" => FormatterHelper.FormatXml(original!),
+                "SQL" => FormatterHelper.FormatSql(original!),
                 _ => "Unsupported format type. Use JSON, XML, or SQL."
             };
 
@@ -30,65 +27,5 @@ namespace Formattica.Service.Service
             };
         }
 
-        private string FormatJson(string content)
-        {
-            try
-            {
-                var parsed = Newtonsoft.Json.Linq.JToken.Parse(content);
-                return parsed.ToString(Newtonsoft.Json.Formatting.Indented);
-            }
-            catch(Exception ex)
-            {
-                return $"Invalid JSON: {ex.Message}";
-            }
-        }
-
-
-        private string FormatXml(string content)
-        {
-            try
-            {
-                var doc = XDocument.Parse(content);
-                return doc.Declaration + Environment.NewLine + doc.ToString();
-            }
-            catch(Exception ex)
-            {
-                return $"Invalid XML: {ex.Message}";
-            }
-        }
-
-        private string FormatSql(string content)
-        {
-            try
-            {
-                return SqlFormatter.Of(Dialect.TSql).Format(content);
-            }
-            catch(Exception ex)
-            {
-                return $"SQL formatting error: {ex.Message}";
-            }
-        }
-
-
-        /*public (string OriginalJson, string FormattedJson) FormatJson(string? jsonInput)
-        {
-            if(string.IsNullOrWhiteSpace(jsonInput))
-                return (jsonInput ?? string.Empty, "Invalid JSON format!");
-
-            try
-            {
-                using var jsonDoc = JsonDocument.Parse(jsonInput);
-                var formatted = JsonSerializer.Serialize(jsonDoc, new JsonSerializerOptions
-                {
-                    WriteIndented = true
-                });
-
-                return (jsonInput, formatted);
-            }
-            catch(JsonException)
-            {
-                return (jsonInput, "Invalid JSON format!");
-            }
-        }*/
     }
 }

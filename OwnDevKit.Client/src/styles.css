@@ -1,18 +1,21 @@
 body {
   padding-top: 90px; /* navbar height + some buffer */
+  padding-bottom: 70px; /* prevent footer overlap */
   background-color: rgba(13, 110, 253, 0.25);
   color: #000;
 }
 
 footer {
   font-size: smaller;
-  padding-top: 80px;
   text-align: center;
   color: #6c757d;
-}
 
-/* Prevent scroll on entire page */
-/* body, html {
-  overflow: hidden;
-  height: 100%;
-} */
+  position: fixed;  /* stay at bottom always */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  padding: 26px 0;
+  border-top: 1px solid #dee2e6; /* optional thin border */
+  z-index: 1000;
+}

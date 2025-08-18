@@ -18,56 +18,47 @@ namespace Formattica.Server.Controllers
             _formatterService = formatterService;
         }
 
+
         [HttpPost("format")]
-    [RequestSizeLimit(20_000_000)] // 20 MB
-    public IActionResult FormatLargeJson([FromBody] FormatRequest request)
-    {
-        if (string.IsNullOrWhiteSpace(request.Content))
-            return BadRequest("Content is required.");
-
-        if (request.FormatType?.ToUpper() != "JSON")
-            return BadRequest("Only 'JSON' format is supported in this test.");
-
-        try
+        [RequestSizeLimit(20_000_000)]
+        public IActionResult FormatContent([FromBody] FormatInputModel formatInputModel)
         {
-            var parsed = JToken.Parse(request.Content);
-            var formatted = parsed.ToString(Formatting.Indented);
+            if(string.IsNullOrWhiteSpace(formatInputModel?.Content))
+                return BadRequest(new { Error = "Content is required." });
 
-            return Ok(new
+            if(string.IsNullOrWhiteSpace(formatInputModel.FormatType))
+                return BadRequest(new { Error = "FormatType is required. Use JSON, XML, or SQL." });
+
+            try
             {
-                Message = "Formatted successfully",
-                Length = formatted.Length,
-                Preview = formatted
-            });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new
+                var result = _formatterService.FormatContent(formatInputModel);
+
+                if(result.Formatted.StartsWith("Unsupported format type") ||
+                    result.Formatted.StartsWith("Invalid JSON") ||
+                    result.Formatted.StartsWith("Invalid XML") ||
+                    result.Formatted.StartsWith("Invalid SQL"))
+                {
+                    return BadRequest(new
+                    {
+                        Error = result.Formatted
+                    });
+                }
+
+                return Ok(new
+                {
+                    Message = "Formatted successfully",
+                    Length = result.Formatted.Length,
+                    Original = result.Original,
+                    Preview = result.Formatted
+                });
+            }
+            catch(Exception ex)
             {
-                Error = $"Formatting failed: {ex.Message}"
-            });
+                return BadRequest(new
+                {
+                    Error = $"Formatting failed: {ex.Message}"
+                });
+            }
         }
-    }
-
-        public class FormatRequest
-        {
-            public string? Content { get; set; }
-            public string? FormatType { get; set; }
-        }
-
-
-        /*[HttpPost("format-json")]
-        public IActionResult FormatJson([FromBody] JsonInputModel model)
-        {
-            var result = _formatterService.FormatJson(model.JsonInput);
-
-            return Ok(new
-            {
-                OriginalJson = result.OriginalJson,
-                FormattedJson = result.FormattedJson
-            });
-        }*/
-
-
     }
 }

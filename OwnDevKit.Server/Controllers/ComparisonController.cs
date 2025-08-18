@@ -1,7 +1,4 @@
-﻿using DiffPlex;
-using DiffPlex.DiffBuilder;
-using DiffPlex.DiffBuilder.Model;
-using Formattica.Models.Comparison;
+﻿using Formattica.Models.Comparison;
 using Formattica.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,134 +15,12 @@ namespace Formattica.Server.Controllers
             _comparisonService = comparisonService;
         }
 
-        [HttpPost("compare1")]
+        [HttpPost("compare")]
         public IActionResult CompareCode([FromBody] CodeComparisonRequest request)
         {
             var result = _comparisonService.Compare(request.OldCode!, request.NewCode!);
             return Ok(result);
         }
-
-
-        [HttpPost("compare")]
-        public IActionResult Compare([FromBody] CodeComparisonRequest request)
-        {
-            if(string.IsNullOrWhiteSpace(request.OldCode) || string.IsNullOrWhiteSpace(request.NewCode))
-                return BadRequest("Input strings cannot be empty.");
-
-            var result = CompareLines(request.OldCode, request.NewCode);
-            return Ok(result);
-        }
-
-        private List<object> CompareLines(string oldCode, string newCode)
-        {
-            var oldLines = oldCode.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
-            var newLines = newCode.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
-
-            int m = oldLines.Length;
-            int n = newLines.Length;
-
-            var trimmedOld = oldLines.Select(l => l.Trim()).ToArray();
-            var trimmedNew = newLines.Select(l => l.Trim()).ToArray();
-
-            int[,] lcs = new int[m + 1, n + 1];
-            for(int i = m - 1; i >= 0; i--)
-            {
-                for(int j = n - 1; j >= 0; j--)
-                {
-                    if(trimmedOld[i] == trimmedNew[j])
-                        lcs[i, j] = lcs[i + 1, j + 1] + 1;
-                    else
-                        lcs[i, j] = Math.Max(lcs[i + 1, j], lcs[i, j + 1]);
-                }
-            }
-
-            var result = new List<object>();
-            int a = 0, b = 0;
-            while(a < m && b < n)
-            {
-                if(trimmedOld[a] == trimmedNew[b])
-                {
-                    result.Add(new { type = "Unchanged", text = newLines[b] });
-                    a++; b++;
-                }
-                else if(lcs[a + 1, b] >= lcs[a, b + 1])
-                {
-                    // Try inline diff if likely similar
-                    if(b < n)
-                    {
-                        var wordDiff = CompareWords(oldLines[a], newLines[b]);
-                        result.AddRange(wordDiff);
-                        a++; b++;
-                    }
-                    else
-                    {
-                        result.Add(new { type = "Deleted", text = oldLines[a++] });
-                    }
-                }
-                else
-                {
-                    result.Add(new { type = "Inserted", text = newLines[b++] });
-                }
-            }
-
-            while(a < m)
-                result.Add(new { type = "Deleted", text = oldLines[a++] });
-
-            while(b < n)
-                result.Add(new { type = "Inserted", text = newLines[b++] });
-
-            return result;
-        }
-
-        private List<object> CompareWords(string oldLine, string newLine)
-        {
-            var oldWords = oldLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            var newWords = newLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-            int m = oldWords.Length;
-            int n = newWords.Length;
-            int[,] lcs = new int[m + 1, n + 1];
-
-            for(int i = m - 1; i >= 0; i--)
-            {
-                for(int j = n - 1; j >= 0; j--)
-                {
-                    if(oldWords[i] == newWords[j])
-                        lcs[i, j] = lcs[i + 1, j + 1] + 1;
-                    else
-                        lcs[i, j] = Math.Max(lcs[i + 1, j], lcs[i, j + 1]);
-                }
-            }
-
-            var result = new List<object>();
-            int a = 0, b = 0;
-
-            while(a < m && b < n)
-            {
-                if(oldWords[a] == newWords[b])
-                {
-                    result.Add(new { type = "Unchanged", text = oldWords[a] });
-                    a++; b++;
-                }
-                else if(lcs[a + 1, b] >= lcs[a, b + 1])
-                {
-                    result.Add(new { type = "Deleted", text = oldWords[a++] });
-                }
-                else
-                {
-                    result.Add(new { type = "Inserted", text = newWords[b++] });
-                }
-            }
-
-            while(a < m)
-                result.Add(new { type = "Deleted", text = oldWords[a++] });
-
-            while(b < n)
-                result.Add(new { type = "Inserted", text = newWords[b++] });
-
-            return result;
-        }
-
 
         #region Old Code
         /*private List<object> CompareLines(string oldCode, string newCode)
@@ -279,7 +154,128 @@ namespace Formattica.Server.Controllers
                     }
 
                     return result;
-                }*/ 
+                }*/
+
+
+        /*        [HttpPost("compare")]
+        public IActionResult Compare([FromBody] CodeComparisonRequest request)
+        {
+            if(string.IsNullOrWhiteSpace(request.OldCode) || string.IsNullOrWhiteSpace(request.NewCode))
+                return BadRequest("Input strings cannot be empty.");
+
+            var result = CompareLines(request.OldCode, request.NewCode);
+            return Ok(result);
+        }
+
+        private List<object> CompareLines(string oldCode, string newCode)
+        {
+            var oldLines = oldCode.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+            var newLines = newCode.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+            int m = oldLines.Length;
+            int n = newLines.Length;
+
+            var trimmedOld = oldLines.Select(l => l.Trim()).ToArray();
+            var trimmedNew = newLines.Select(l => l.Trim()).ToArray();
+
+            int[,] lcs = new int[m + 1, n + 1];
+            for(int i = m - 1; i >= 0; i--)
+            {
+                for(int j = n - 1; j >= 0; j--)
+                {
+                    if(trimmedOld[i] == trimmedNew[j])
+                        lcs[i, j] = lcs[i + 1, j + 1] + 1;
+                    else
+                        lcs[i, j] = Math.Max(lcs[i + 1, j], lcs[i, j + 1]);
+                }
+            }
+
+            var result = new List<object>();
+            int a = 0, b = 0;
+            while(a < m && b < n)
+            {
+                if(trimmedOld[a] == trimmedNew[b])
+                {
+                    result.Add(new { type = "Unchanged", text = newLines[b] });
+                    a++; b++;
+                }
+                else if(lcs[a + 1, b] >= lcs[a, b + 1])
+                {
+                    // Try inline diff if likely similar
+                    if(b < n)
+                    {
+                        var wordDiff = CompareWords(oldLines[a], newLines[b]);
+                        result.AddRange(wordDiff);
+                        a++; b++;
+                    }
+                    else
+                    {
+                        result.Add(new { type = "Deleted", text = oldLines[a++] });
+                    }
+                }
+                else
+                {
+                    result.Add(new { type = "Inserted", text = newLines[b++] });
+                }
+            }
+
+            while(a < m)
+                result.Add(new { type = "Deleted", text = oldLines[a++] });
+
+            while(b < n)
+                result.Add(new { type = "Inserted", text = newLines[b++] });
+
+            return result;
+        }
+
+        private List<object> CompareWords(string oldLine, string newLine)
+        {
+            var oldWords = oldLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var newWords = newLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            int m = oldWords.Length;
+            int n = newWords.Length;
+            int[,] lcs = new int[m + 1, n + 1];
+
+            for(int i = m - 1; i >= 0; i--)
+            {
+                for(int j = n - 1; j >= 0; j--)
+                {
+                    if(oldWords[i] == newWords[j])
+                        lcs[i, j] = lcs[i + 1, j + 1] + 1;
+                    else
+                        lcs[i, j] = Math.Max(lcs[i + 1, j], lcs[i, j + 1]);
+                }
+            }
+
+            var result = new List<object>();
+            int a = 0, b = 0;
+
+            while(a < m && b < n)
+            {
+                if(oldWords[a] == newWords[b])
+                {
+                    result.Add(new { type = "Unchanged", text = oldWords[a] });
+                    a++; b++;
+                }
+                else if(lcs[a + 1, b] >= lcs[a, b + 1])
+                {
+                    result.Add(new { type = "Deleted", text = oldWords[a++] });
+                }
+                else
+                {
+                    result.Add(new { type = "Inserted", text = newWords[b++] });
+                }
+            }
+
+            while(a < m)
+                result.Add(new { type = "Deleted", text = oldWords[a++] });
+
+            while(b < n)
+                result.Add(new { type = "Inserted", text = newWords[b++] });
+
+            return result;
+        }*/
         #endregion
 
 

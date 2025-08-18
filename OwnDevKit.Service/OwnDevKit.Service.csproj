@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OwnDevKit.Framwork\OwnDevKit.Framwork.csproj" />
     <ProjectReference Include="..\OwnDevKit.Models\OwnDevKit.Models.csproj" />
   </ItemGroup>
 
