@@ -1,0 +1,6 @@
+@OwnDevKit.Server_HostAddress = http://localhost:5076
+
+GET {{OwnDevKit.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

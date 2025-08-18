@@ -4,12 +4,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <SpaRoot>..\formattica.client</SpaRoot>
+    <SpaRoot>..\OwnDevKit.Client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:52607</SpaProxyServerUrl>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DiffPlex" Version="1.8.0" />
     <PackageReference Include="FreeSpire.Doc" Version="12.2.0" />
     <PackageReference Include="FreeSpire.PDF" Version="10.2.0" />
     <PackageReference Include="Ghostscript.NET" Version="1.3.0" />
@@ -23,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\formattica.client\formattica.client.esproj">
+    <ProjectReference Include="..\OwnDevKit.Client\OwnDevKit.Client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\Formattica.Service\Formattica.Service.csproj" />
+    <ProjectReference Include="..\OwnDevKit.Service\OwnDevKit.Service.csproj" />
   </ItemGroup>
 
 </Project>
